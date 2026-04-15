@@ -9,6 +9,8 @@ import App from "./App";
 import Home from "./pages/Home";
 
 import "./index.css";
+import NotFound from "./pages/NotFound";
+import FriendDetails from "./pages/FriendDetails";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +29,15 @@ const router = createBrowserRouter([
         path: "/stats",
         element: <h1>Stats Page</h1>,
       },
+      { path: "/friend/:id", 
+        element: <FriendDetails /> 
+      },
     ],
+  },
+
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
