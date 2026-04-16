@@ -8,7 +8,7 @@ const Navbar = () => {
       : "flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 text-gray-600 hover:text-black text-sm md:text-base";
 
   return (
-    <div className="bg-white shadow-sm">
+    <div className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         
         {/* Logo */}
