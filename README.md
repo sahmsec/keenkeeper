@@ -1,16 +1,71 @@
-# React + Vite
+# KeenKeeper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern relationship management web application that helps users maintain meaningful connections by tracking interactions, setting goals, and visualizing engagement patterns.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Overview
 
-## React Compiler
+KeenKeeper is designed to help users keep track of their friends and interactions in an organized way. It allows users to log calls, texts, and video interactions, monitor relationship health, and analyze communication trends through a visual dashboard.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Friend Management
+- Display a list of friends with detailed profiles
+- Show relationship status (On Track, Almost Due, Overdue)
+- View individual friend details including goals and last interaction
+
+### Interaction Tracking
+- Log interactions (Call, Text, Video)
+- Store interaction history using Context API and localStorage
+- Real-time updates in Timeline page
+
+### Timeline System
+- View all interactions in a structured timeline
+- Filter by interaction type (Call, Text, Video)
+- Sort by newest or oldest
+- Search by:
+  - Friend name
+  - Interaction type
+
+### Analytics Dashboard
+- Visual representation of interaction data using a pie chart
+- Displays distribution of interaction types
+- Updates dynamically based on logged data
+
+### UI/UX Enhancements
+- Loading spinners for better user experience
+- Toast notifications for user actions
+- Sticky navigation bar
+- Fully responsive layout
+
+---
+
+## Technologies Used
+
+- React.js
+- React Router
+- Context API
+- Tailwind CSS
+- DaisyUI
+- React Toastify
+- Recharts
+
+---
+
+## Installation & Setup
+
+```bash
+# Clone the repository
+git clone <your-repo-link>
+
+# Navigate into project
+cd keenkeeper
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
