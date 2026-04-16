@@ -14,6 +14,7 @@ import "./index.css";
 
 // ✅ IMPORT THIS
 import { TimelineProvider } from "./context/TimelineContext";
+import Timeline from "./pages/Timeline";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/timeline",
-        element: <h1>Timeline Page</h1>,
+        element: <Timeline />,
       },
       {
         path: "/stats",

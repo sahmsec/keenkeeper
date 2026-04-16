@@ -1,21 +1,47 @@
 import { useParams } from "react-router-dom";
 import friends from "../data/friends.json";
-import { AlarmClock, Archive, Trash2, Phone, MessageSquare, Video } from "lucide-react";
+import {
+  AlarmClock,
+  Archive,
+  Trash2,
+  Phone,
+  MessageSquare,
+  Video,
+} from "lucide-react";
+
+
+import { useTimeline } from "../context/TimelineContext";
+import { toast } from "react-toastify";
 
 const FriendDetails = () => {
   const { id } = useParams();
   const friend = friends.find((f) => f.id === parseInt(id));
 
+  const { addEntry } = useTimeline();
+
   if (!friend) {
     return <h1 className="text-center mt-10">Friend not found</h1>;
   }
 
+  // CORE LOGIC
+  const handleAction = (type) => {
+    const newEntry = {
+      id: Date.now(),
+      type,
+      title: `${type} with ${friend.name}`,
+      date: new Date().toISOString(),
+    };
+
+    addEntry(newEntry);
+    toast.success(`${type} logged!`);
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
+
       {/* LEFT COLUMN */}
       <div className="space-y-4">
-        
+
         {/* Profile Card */}
         <div className="bg-white rounded-xl shadow-sm p-6 text-center">
           <img
@@ -28,19 +54,18 @@ const FriendDetails = () => {
 
           {/* Status */}
           <span
-            className={`inline-block mt-2 px-3 py-1 text-xs rounded-full text-white ${
-              friend.status === "overdue"
-                ? "bg-red-500"
-                : friend.status === "almost due"
+            className={`inline-block mt-2 px-3 py-1 text-xs rounded-full text-white ${friend.status === "overdue"
+              ? "bg-red-500"
+              : friend.status === "almost due"
                 ? "bg-yellow-500"
                 : "bg-[#244D3F]"
-            }`}
+              }`}
           >
             {friend.status === "almost due"
               ? "Almost Due"
               : friend.status === "on-track"
-              ? "On-Track"
-              : "Overdue"}
+                ? "On-Track"
+                : "Overdue"}
           </span>
 
           {/* Tags */}
@@ -129,20 +154,31 @@ const FriendDetails = () => {
           <h3 className="font-semibold mb-4">Quick Check-In</h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <button className="bg-[#F8FAFC] shadow-md rounded-lg py-4 flex flex-col items-center gap-2 hover:bg-green-200">
+
+            <button
+              onClick={() => handleAction("call")}
+              className="bg-[#F8FAFC] shadow-md rounded-lg py-4 flex flex-col items-center gap-2 hover:bg-green-200"
+            >
               <Phone size={20} />
               Call
             </button>
 
-            <button className="bg-[#F8FAFC] shadow-md rounded-lg py-4 flex flex-col items-center gap-2 hover:bg-green-200">
+            <button
+              onClick={() => handleAction("text")}
+              className="bg-[#F8FAFC] shadow-md rounded-lg py-4 flex flex-col items-center gap-2 hover:bg-green-200"
+            >
               <MessageSquare size={20} />
               Text
             </button>
 
-            <button className="bg-[#F8FAFC] shadow-md rounded-lg py-4 flex flex-col items-center gap-2 hover:bg-green-200">
+            <button
+              onClick={() => handleAction("video")}
+              className="bg-[#F8FAFC] shadow-md rounded-lg py-4 flex flex-col items-center gap-2 hover:bg-green-200"
+            >
               <Video size={20} />
               Video
             </button>
+
           </div>
         </div>
 

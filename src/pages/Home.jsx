@@ -1,10 +1,27 @@
 import { UserPlus } from "lucide-react";
 import friends from "../data/friends.json";
 import FriendCard from "../components/FriendCard";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    console.log("friends:", friends);
+    useEffect(() => {
+        setTimeout(() => {
+            setData(friends);
+            setLoading(false);
+        }, 500);
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-[60vh]">
+                <span className="loading loading-spinner loading-lg text-[#244D3F]"></span>
+            </div>
+        );
+    }
+
     return (
         <div>
             {/* Banner */}
@@ -58,7 +75,7 @@ const Home = () => {
                 </h2>
 
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {friends.map((friend) => (
+                    {data.map((friend) => (
                         <FriendCard key={friend.id} friend={friend} />
                     ))}
                 </div>
