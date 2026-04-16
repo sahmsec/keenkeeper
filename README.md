@@ -54,18 +54,3 @@ KeenKeeper is designed to help users keep track of their friends and interaction
 - Recharts
 
 ---
-
-## Installation & Setup
-
-```bash
-# Clone the repository
-git clone <your-repo-link>
-
-# Navigate into project
-cd keenkeeper
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
