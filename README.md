@@ -1,3 +1,7 @@
+<img width="1463" height="601" alt="image" src="https://github.com/user-attachments/assets/36ff4bff-4ad2-4ab2-af48-b82c36f7566e" />
+
+
+
 # KeenKeeper
 
 A modern relationship management web application that helps users maintain meaningful connections by tracking interactions, setting goals, and visualizing engagement patterns.
