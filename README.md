@@ -1,6 +1,5 @@
-<p align="left">
-  <img src="https://github.com/user-attachments/assets/f516dbeb-eeab-4a5d-9398-01f6e73eaf5d" alt="sahmsec" width="250"/>
-</p>
+<img width="1463" height="601" alt="image" src="https://github.com/user-attachments/assets/36ff4bff-4ad2-4ab2-af48-b82c36f7566e" />
+
 
 
 # KeenKeeper
