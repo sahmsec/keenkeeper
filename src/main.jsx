@@ -7,10 +7,13 @@ import {
 
 import App from "./App";
 import Home from "./pages/Home";
-
-import "./index.css";
 import NotFound from "./pages/NotFound";
 import FriendDetails from "./pages/FriendDetails";
+
+import "./index.css";
+
+// ✅ IMPORT THIS
+import { TimelineProvider } from "./context/TimelineContext";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +32,12 @@ const router = createBrowserRouter([
         path: "/stats",
         element: <h1>Stats Page</h1>,
       },
-      { path: "/friend/:id", 
-        element: <FriendDetails /> 
+      {
+        path: "/friend/:id",
+        element: <FriendDetails />,
       },
     ],
   },
-
   {
     path: "*",
     element: <NotFound />,
@@ -42,5 +45,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <React.StrictMode>
+    <TimelineProvider>
+      <RouterProvider router={router} />
+    </TimelineProvider>
+  </React.StrictMode>
 );
