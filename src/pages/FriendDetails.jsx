@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import friends from "../data/friends.json";
 import {
   AlarmClock,
@@ -9,21 +10,40 @@ import {
   Video,
 } from "lucide-react";
 
-
 import { useTimeline } from "../context/TimelineContext";
 import { toast } from "react-toastify";
 
 const FriendDetails = () => {
   const { id } = useParams();
-  const friend = friends.find((f) => f.id === parseInt(id));
+
+  const [friend, setFriend] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const { addEntry } = useTimeline();
 
+  useEffect(() => {
+    setTimeout(() => {
+      const found = friends.find((f) => f.id === parseInt(id));
+      setFriend(found);
+      setLoading(false);
+    }, 300);
+  }, [id]);
+
+  // ✅ LOADING
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-[60vh]">
+        <span className="loading loading-spinner loading-lg text-[#244D3F]"></span>
+      </div>
+    );
+  }
+
+  // ✅ NOT FOUND
   if (!friend) {
     return <h1 className="text-center mt-10">Friend not found</h1>;
   }
 
-  // CORE LOGIC
+  // ✅ CORE LOGIC
   const handleAction = (type) => {
     const newEntry = {
       id: Date.now(),
@@ -33,7 +53,7 @@ const FriendDetails = () => {
     };
 
     addEntry(newEntry);
-    toast.success(`${type} logged!`);
+    toast(`${type} logged!`);
   };
 
   return (
@@ -52,23 +72,22 @@ const FriendDetails = () => {
 
           <h2 className="mt-4 text-lg font-semibold">{friend.name}</h2>
 
-          {/* Status */}
           <span
-            className={`inline-block mt-2 px-3 py-1 text-xs rounded-full text-white ${friend.status === "overdue"
-              ? "bg-red-500"
-              : friend.status === "almost due"
+            className={`inline-block mt-2 px-3 py-1 text-xs rounded-full text-white ${
+              friend.status === "overdue"
+                ? "bg-red-500"
+                : friend.status === "almost due"
                 ? "bg-yellow-500"
                 : "bg-[#244D3F]"
-              }`}
+            }`}
           >
             {friend.status === "almost due"
               ? "Almost Due"
               : friend.status === "on-track"
-                ? "On-Track"
-                : "Overdue"}
+              ? "On-Track"
+              : "Overdue"}
           </span>
 
-          {/* Tags */}
           <div className="mt-3 flex justify-center gap-2 flex-wrap">
             {friend.tags.map((tag, i) => (
               <span
@@ -80,12 +99,10 @@ const FriendDetails = () => {
             ))}
           </div>
 
-          {/* Bio */}
           <p className="mt-4 text-sm text-gray-500 italic">
             "{friend.bio}"
           </p>
 
-          {/* Email */}
           <p className="mt-2 text-xs text-gray-400">{friend.email}</p>
         </div>
 
@@ -101,7 +118,7 @@ const FriendDetails = () => {
             Archive
           </button>
 
-          <button className="w-full bg-white shadow-2xs border-red-300 rounded-lg py-2 text-sm text-red-500 flex items-center justify-center gap-2 hover:bg-red-50">
+          <button className="w-full bg-white border-red-300 rounded-lg py-2 text-sm text-red-500 flex items-center justify-center gap-2 hover:bg-red-50">
             <Trash2 size={16} />
             Delete
           </button>
