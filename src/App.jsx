@@ -7,7 +7,9 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
       <Navbar />
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+      />
 
       <main className="flex-1 flex flex-col">
         <Outlet />

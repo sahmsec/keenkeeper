@@ -12,9 +12,10 @@ import FriendDetails from "./pages/FriendDetails";
 
 import "./index.css";
 
-// ✅ IMPORT THIS
+
 import { TimelineProvider } from "./context/TimelineContext";
 import Timeline from "./pages/Timeline";
+import Stats from "./pages/Stats";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/stats",
-        element: <h1>Stats Page</h1>,
+        element: <Stats />,
       },
       {
         path: "/friend/:id",
