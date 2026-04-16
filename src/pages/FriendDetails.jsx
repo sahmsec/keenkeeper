@@ -12,6 +12,7 @@ import {
 
 import { useTimeline } from "../context/TimelineContext";
 import { toast } from "react-toastify";
+import NotFound from "./NotFound";
 
 const FriendDetails = () => {
   const { id } = useParams();
@@ -38,12 +39,13 @@ const FriendDetails = () => {
     );
   }
 
-  // ✅ NOT FOUND
+
+  // not found
   if (!friend) {
-    return <h1 className="text-center mt-10">Friend not found</h1>;
+    return <NotFound />;
   }
 
-  // ✅ CORE LOGIC
+
   const handleAction = (type) => {
     const newEntry = {
       id: Date.now(),
@@ -73,19 +75,18 @@ const FriendDetails = () => {
           <h2 className="mt-4 text-lg font-semibold">{friend.name}</h2>
 
           <span
-            className={`inline-block mt-2 px-3 py-1 text-xs rounded-full text-white ${
-              friend.status === "overdue"
+            className={`inline-block mt-2 px-3 py-1 text-xs rounded-full text-white ${friend.status === "overdue"
                 ? "bg-red-500"
                 : friend.status === "almost due"
-                ? "bg-yellow-500"
-                : "bg-[#244D3F]"
-            }`}
+                  ? "bg-yellow-500"
+                  : "bg-[#244D3F]"
+              }`}
           >
             {friend.status === "almost due"
               ? "Almost Due"
               : friend.status === "on-track"
-              ? "On-Track"
-              : "Overdue"}
+                ? "On-Track"
+                : "Overdue"}
           </span>
 
           <div className="mt-3 flex justify-center gap-2 flex-wrap">
